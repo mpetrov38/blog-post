@@ -4,6 +4,7 @@ const EditError = ({children}) => {
     if(!children){
         return null;
     }
+    
     return (
         <div className="input-error">{children}</div>        
     )
