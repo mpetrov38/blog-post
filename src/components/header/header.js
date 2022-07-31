@@ -6,13 +6,13 @@ const Header = () => {
     <nav>
       <div className="left-container">
         <ul>
-          <div className="nav-btn">Home</div>
-          <div className="nav-btn">Add Post</div>
+          <div href="/" className="nav-btn">Home</div>
+          <div href="/addPost" className="nav-btn">Add Post</div>
         </ul>
       </div>
       <div className="right-container">
-        <div className="nav-btn">Profile</div>
-        <div className="nav-btn">Logout</div>
+        <div href="/profile" className="nav-btn">Profile</div>
+        <div href="" className="nav-btn">Logout</div>
       </div>
     </nav>
   );

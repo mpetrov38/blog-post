@@ -1,4 +1,5 @@
 import './profile.css';
+import imgSrc from "../../images/profile.jpg";
 import { useEffect, useState, useContext } from 'react';
 
 const Profile = () => {
@@ -6,7 +7,7 @@ const Profile = () => {
     return (
         <section id="viewPostDetails">
             <div className="profile">
-                <img src="" alt="default user" />
+                <img src={imgSrc} alt="default user" />
                 <h3>User Info:</h3>
                 <div className="flex">
                     <p>Email: </p>

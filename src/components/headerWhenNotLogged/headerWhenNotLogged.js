@@ -7,8 +7,8 @@ const HeaderWhenNotLogged = () => {
             <div className="left-container">
                 <ul>
                     <li><Link className="nav-btn" to="/">Home</Link></li>
-                    <div className="nav-btn">Login</div>
-                    <div className="nav-btn">Register</div>
+                    <li><Link className="nav-btn" to="/login">Login</Link></li>
+                    <li><Link className="nav-btn" to="/register">Register</Link></li>
                 </ul>
             </div>
         </nav>

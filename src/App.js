@@ -2,15 +2,15 @@ import { BrowserRouter as Router, Route,Routes, Redirect } from 'react-router-do
 
 import "./App.css";
 import { useState, useEffect } from "react";
-import Home from "./home/home";
-import Details from "./details/details";
-import Edit from "./edit/edit";
-import Footer from "./footer/footer";
-import Header from "./header/header";
-import Login from "./login/login";
-import Register from "./register/register";
-import Profile from "./profile/profile";
-import AddPost from "./addPost/addPost";
+import Home from "./components/home/home";
+import Details from "./components/details/details";
+import Edit from "./components/edit/edit";
+import Footer from "./components/footer/footer";
+import Header from "./components/header/header";
+import Login from "./components/login/login";
+import Register from "./components/register/register";
+import Profile from "./components/profile/profile";
+import AddPost from "./components/addPost/addPost";
 import HeaderWhenNotLogged from "./headerWhenNotLogged/headerWhenNotLogged";
 
 function App() {
