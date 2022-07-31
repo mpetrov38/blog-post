@@ -10,7 +10,7 @@
 }
 
 .background-img {
-    /* background: url("../../../src/images/post.jpg") no-repeat; */
+    background: url("../../../src/images/back-ground-image.jpg") no-repeat; 
     background-size: cover;
     margin: auto;
     min-height: 500px;
