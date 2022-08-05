@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route,Routes, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Redirect } from 'react-router-dom';
 
 import "./App.css";
 import { useState, useEffect } from "react";
@@ -11,24 +11,29 @@ import Login from "./components/login/login";
 import Register from "./components/register/register";
 import Profile from "./components/profile/profile";
 import AddPost from "./components/addPost/addPost";
-import HeaderWhenNotLogged from "./headerWhenNotLogged/headerWhenNotLogged";
+import HeaderWhenNotLogged from "./components/headerWhenNotLogged/headerWhenNotLogged";
+import {AuthContextProvider} from "./contexts/authContext"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 function App() {
+
 
   return (
     <Router>
     <div className="App">
       <Header /> 
       <HeaderWhenNotLogged/>
+      <AuthContextProvider>
         <Routes>
-          <Route path="/" exact component={<Home/>} />
-          <Route path="/add" exact component={<AddPost/>} />
-          <Route path="/profile" exact component={<Profile/>} />
-          <Route path="/details/:PostId" exact component={<Details/>} />
-          <Route path="/edit/:PostId" exact component={<Edit/>} />
-          <Route path="/login" exact component={<Login/>} />  
-          <Route path="/register" exact component={<Register/>} />                
+          <Route path="/"  element={<Home/>} />
+          <Route path="/addPost"  element={<AddPost/>} />
+          <Route path="/profile"  element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+          <Route path="/details/:PostId"  element={<Details/>} />
+          <Route path="/edit/:PostId"  element={<Edit/>} />
+          <Route path="/login"  element={<Login/>} />  
+          <Route path="/register"  element={<Register/>} />                
         </Routes>
+      </AuthContextProvider>
       <Footer />
     </div>
   </Router>
