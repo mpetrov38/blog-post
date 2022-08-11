@@ -16,21 +16,20 @@ import {AuthContextProvider} from "./contexts/authContext"
 import ProtectedRoute from "./components/ProtectedRoute"
 
 function App() {
-
-
+  const [isAuth,setIsAuth] = useState(false);
+  console.log(isAuth);
   return (
     <Router>
     <div className="App">
-      <Header /> 
-      <HeaderWhenNotLogged/>
-      <AuthContextProvider>
+    <AuthContextProvider>
+    {isAuth ? <Header setIsAuth={setIsAuth}/> : <HeaderWhenNotLogged setIsAuth={setIsAuth}/>}
         <Routes>
           <Route path="/"  element={<Home/>} />
           <Route path="/addPost"  element={<AddPost/>} />
-          <Route path="/profile"  element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+          <Route path="/profile"  element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/details/:PostId"  element={<Details/>} />
           <Route path="/edit/:PostId"  element={<Edit/>} />
-          <Route path="/login"  element={<Login/>} />  
+          <Route path="/login"  element={<Login setIsAuth={setIsAuth}/>} />  
           <Route path="/register"  element={<Register/>} />                
         </Routes>
       </AuthContextProvider>

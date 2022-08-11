@@ -5,24 +5,13 @@ import {UserAuth} from '../../contexts/authContext';
 import {useNavigate} from 'react-router-dom';
 
 const Profile = () => {
-    const {user,logout} = UserAuth();
-    const navigate = useNavigate();
-    const handleLogout = async () => {
-        try{
-            await logout();
-            navigate('/')
-            console.log("logged out")
-        } catch(err){
-            console.log(err.message);
-        }
-    }
-
-   
+    const {user} = UserAuth();
+      
     return (
         <section id="viewPostDetails">
             <div className="profile">
                 <img src={imgSrc} alt="default user" />
-                <h3>User Info:{}</h3>
+                <h3>Profile Info:</h3>
                 <div className="flex">
                     <p>Email: </p>
                     <p>{user && user.email}</p>
@@ -32,7 +21,6 @@ const Profile = () => {
                     <p>{}</p>
                 </div>
                 <button className="delete">Delete Profile</button>
-                <button onClick={handleLogout} className="logout">Logout</button>
             </div>
         </section>
     );

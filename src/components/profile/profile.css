@@ -20,14 +20,6 @@
     width: 100px;
 }
 
-.logout{
-    background: cornflowerblue;
-    color: white;
-    border: 2px solid lightsteelblue;
-    padding: 15px;
-    width: 100px;
-}
-
 .profile h3 {
     text-decoration: underline;
 }

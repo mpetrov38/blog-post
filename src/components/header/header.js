@@ -1,7 +1,24 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
+import {UserAuth} from '../../contexts/authContext';
 
-const Header = () => {
+
+const Header = (props) => {
+
+  const {setIsAuth} = props;
+  const {user,logout} = UserAuth();
+  const navigate = useNavigate();
+  const logOutHandler = async () => {
+    try{
+      await logout();
+      setIsAuth(false);
+      localStorage.clear();
+      navigate('/')
+  } catch(err){
+      console.log(err.message);
+  }
+  };
+
   return (
     <nav>
       <div className="left-container">
@@ -12,7 +29,7 @@ const Header = () => {
       </div>
       <div className="right-container">
           <Link to="/profile" className="nav-btn">Profile</Link>
-          <div className="nav-btn">Logout</div>
+          <div className="nav-btn" onClick={logOutHandler}>Logout</div>
       </div>
     </nav>
   );

@@ -1,6 +1,6 @@
 # Project description
 
-This is my final React JS project for the SoftUni exam. It's a simple CRUD blog-post app. The user(creator) can register and login, create a hotel, edit the post or delete the post. The user can visit their profil page to check with what email they are sign up and delete the profile. The user(visitor) can like a post.
+This is my final React JS project for the SoftUni exam. It's a simple CRUD blog-post app. The user(creator) can register and login, create a post, edit the post or delete the post. The user can visit their profil page to check with what email they are sign up and delete the profile. The user can like a post.
 
 ## Security futures implemented:
 Guest user can not create, delete, update other users' content.

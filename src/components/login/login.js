@@ -4,7 +4,7 @@ import { useState, useContext } from 'react';
 import LoginError from '../loginError/loginError';
 import { UserAuth } from '../../contexts/authContext';
 
-const Login = () => {
+const Login = ({setIsAuth}) => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error,setError] = useState("");
@@ -16,6 +16,8 @@ const Login = () => {
         setError("");
         try {
             await login(email,password);
+            localStorage.setItem("setIsAuth", true);
+            setIsAuth(true);
             navigate('/profile');
         } catch (e) {
             setError(e.message);
