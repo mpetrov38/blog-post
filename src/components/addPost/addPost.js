@@ -1,5 +1,6 @@
 import { React, useState , useEffect} from 'react';
 import './addPost.css'
+import LoginError from '../loginError/loginError';
 import {addDoc, collection} from "firebase/firestore"
 import {db, auth} from "../../db/db-config"
 import {useNavigate} from 'react-router-dom'
@@ -9,8 +10,10 @@ const AddPost = () => {
     const [title,setTitle] = useState('');
     const [postText,setPostText] = useState('');
     const [image,setImage] = useState('');
+    const [error,setError] = useState('');
     let navigate = useNavigate();
     const postsCollectionRef = collection(db, 'posts');
+    
     const createPost = async (e) => {
         e.preventDefault();
         try {
@@ -22,12 +25,17 @@ const AddPost = () => {
                 name: auth.currentUser.email,
                 id: auth.currentUser.uid
                 }});
+                if (title.length === 0 || postText.length === 0||image.length === 0) {
+                    setError('All fields are required');
+                    return;
+                }
                 navigate('/');
         } catch (error) {
-            console.error(error)
+            
         }
     }
-       
+    
+       console.log(auth.currentUser.email);
     
     return (
         <section id="viewAddPost">
@@ -51,7 +59,9 @@ const AddPost = () => {
                     setImage(event.target.value);
                 }}  
                 />
+
                 <input type="submit" className="create" value="Add" />
+                <LoginError className="input-error">{error}</LoginError>
             </form>
         </section>
     );

@@ -16,12 +16,15 @@ const Login = ({setIsAuth}) => {
         setError("");
         try {
             await login(email,password);
+            localStorage.setItem('uid', login.uid);
             localStorage.setItem("setIsAuth", true);
             setIsAuth(true);
             navigate('/profile');
         } catch (e) {
-            setError(e.message);
-            console.log(e.message);
+            if (!localStorage.getItem('uid')) {
+                setError('Wrong username or password!!!');
+                return;
+            }
         }
     }
 
@@ -41,7 +44,7 @@ const Login = ({setIsAuth}) => {
                     setPassword(event.target.value);
                 }} 
                  />
-                {/* <LoginError className="input-error"></LoginError> */}
+                <LoginError className="input-error">{error}</LoginError>
                 <input type="submit" className="login" value="Login" />
             </form>
         </section>

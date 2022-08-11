@@ -2,8 +2,6 @@ import './register.css'
 import { useState,useContext } from 'react';
 import { UserAuth } from '../../contexts/authContext';
 import {Link , useNavigate} from 'react-router-dom'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
-import {auth} from "../../db/db-config"
 import InputError from '../registerError/registerError'
 
 
@@ -21,14 +19,16 @@ const Register = () => {
         if(email.length < 6) {
             return setError('email must be atleast 6 chars')
         }
+        if (password !== rePassword) {
+            return setError('Password and repeat password do not match!!!');
+        }
         setError('');
         try {
          await createUser(email, password);
          navigate('/')
         }
         catch (e) {
-            setError(e.message);
-            console.log(e.message);
+            setError('There is already a user with that email');
         }
     }
 
@@ -42,7 +42,6 @@ const Register = () => {
                     setEmail(event.target.value);
                 }} 
                 />
-                {error ? <InputError>{error}</InputError> : null}
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Password" 
                 onChange={(event) => {
@@ -55,6 +54,7 @@ const Register = () => {
                     setRePassword(event.target.value);
                 }} 
                 />
+                {error ? <InputError>{error}</InputError> : null}
                 <input type="submit" className="register" value="Register" />
             </form>
         </section>

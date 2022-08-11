@@ -2,7 +2,7 @@ import './home.css';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
-import { auth, db } from "../../db/db-config";
+import { db } from "../../db/db-config";
 
 
 
@@ -14,6 +14,7 @@ const Home = () => {
     useEffect(() => {
         const getPosts = async () => {
           const data = await getDocs(postsCollectionRef);
+          console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
           setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
     

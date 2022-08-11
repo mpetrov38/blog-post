@@ -8,7 +8,8 @@ import { db } from "../../db/db-config";
 const Edit = () => {
   let [hotel, setHotel] = useState({});
   const { id } = useParams();
-    const nav = useNavigate();
+  const [error,setError] = useState('');
+  const nav = useNavigate();
   const test = async () => {
     try {
       const docRef = doc(db, "posts", id);
@@ -22,6 +23,8 @@ const Edit = () => {
     test();
   }, [id]);
 
+
+
   const test2 = (e) => {
     e.preventDefault();
     const postName = e.target.post.value;
@@ -33,14 +36,25 @@ const Edit = () => {
       description,
       imageUrl,
     };
+    if (postName.length === 0) {
+      setError('Post name must be atlest 1 char long');
+      return;
+  } else if (description.length === 0) {
+      setError('Description must be atlest 1 char long');
+      return;
+  }  else if (imageUrl.length === 0) {
+      setError('ImageUrl must be atlest 1 char');
+      return;
+  }
 
     const docRef = doc(db, "posts", id);
     setDoc(docRef, data)
       .then((docRef) => {
         // navigate to details details/id
+        nav(`/details/${id}`)
       })
       .catch((error) => {
-        console.log(error);
+       setError('This post does not exist');
       });
   };
 
@@ -69,7 +83,7 @@ const Edit = () => {
           name="imgUrl"
           defaultValue={hotel.imgUrl}
         />
-        {/* <EditError className="input-error"></EditError> */}
+        <EditError className="input-error">{error}</EditError>
         <input type="submit" className="edit" value="Add" />
       </form>
     </section>
