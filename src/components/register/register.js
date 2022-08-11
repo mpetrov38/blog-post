@@ -4,6 +4,7 @@ import { UserAuth } from '../../contexts/authContext';
 import {Link , useNavigate} from 'react-router-dom'
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import {auth} from "../../db/db-config"
+import InputError from '../registerError/registerError'
 
 
 
@@ -17,6 +18,9 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(email.length < 6) {
+            return setError('email must be atleast 6 chars')
+        }
         setError('');
         try {
          await createUser(email, password);
@@ -38,6 +42,7 @@ const Register = () => {
                     setEmail(event.target.value);
                 }} 
                 />
+                {error ? <InputError>{error}</InputError> : null}
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Password" 
                 onChange={(event) => {
