@@ -14,8 +14,13 @@ const AddPost = () => {
     let navigate = useNavigate();
     const postsCollectionRef = collection(db, 'posts');
     
+    
     const createPost = async (e) => {
         e.preventDefault();
+        if (title.length === 0 || postText.length === 0||image.length === 0) {
+            setError('All fields are required');
+            return;
+        }
         try {
             await addDoc(postsCollectionRef,
                 {
@@ -25,10 +30,6 @@ const AddPost = () => {
                 authorId: auth.currentUser.uid,
                 authorName: auth.currentUser.email,
                 });
-                if (title.length === 0 || postText.length === 0||image.length === 0) {
-                    setError('All fields are required');
-                    return;
-                }
                 navigate('/');
         } catch (error) {
             
