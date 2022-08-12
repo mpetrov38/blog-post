@@ -14,10 +14,17 @@ import AddPost from "./components/addPost/addPost";
 import HeaderWhenNotLogged from "./components/headerWhenNotLogged/headerWhenNotLogged";
 import {AuthContextProvider} from "./contexts/authContext"
 import ProtectedRoute from "./components/ProtectedRoute"
-import WeatherFetch from './components/weatherFetch/weatherFetch.js'
+import WeatherFetch from './components/weatherFetch/weatherFetch.js';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function App() {
-  const [isAuth,setIsAuth] = useState(false);
+  
+  const [isAuth,setIsAuth] = useState();
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    setIsAuth(user)
+  })
   return (
     <Router>
     <div className="App">
@@ -27,7 +34,7 @@ function App() {
           <Route path="/"  element={<Home/>} />
           <Route path="/weather" element={<WeatherFetch />} />
           <Route path="/addPost"  element={<ProtectedRoute><AddPost /></ProtectedRoute>} />
-          <Route path="/profile"  element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/profile"  element={isAuth ? <Profile /> : null} />
           <Route path="/details/:id"  element={<ProtectedRoute><Details /></ProtectedRoute>} />
           <Route path="/edit/:id"  element={<ProtectedRoute><Edit /></ProtectedRoute>} />
           <Route path="/login"  element={<Login setIsAuth={setIsAuth}/>} />  

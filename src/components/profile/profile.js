@@ -46,7 +46,7 @@ const Profile = () => {
                     <p>Posts: </p>
                     {userPosts.map((x)=> 
                     <>
-                    <p>{x.postName}, </p>
+                    <p >{x.postName}, </p>
                     </>
                     )}
                 </div>

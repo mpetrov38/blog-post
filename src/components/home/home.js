@@ -2,6 +2,7 @@ import './home.css';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import {getAuth, onAuthStateChanged} from 'firebase/auth'; 
 import { db } from "../../db/db-config";
 
 
@@ -10,7 +11,9 @@ import { db } from "../../db/db-config";
 const Home = () => {
     const [postLists, setPostList] = useState([]);
     const postsCollectionRef = collection(db, "posts");
-
+    const auth = getAuth();
+    onAuthStateChanged(auth,(user)=>{
+    })
     useEffect(() => {
         const getPosts = async () => {
           const data = await getDocs(postsCollectionRef);

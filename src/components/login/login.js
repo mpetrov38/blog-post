@@ -15,10 +15,9 @@ const Login = ({setIsAuth}) => {
         e.preventDefault();
         setError("");
         try {
-            await login(email,password);
-            localStorage.setItem('uid', login.uid);
+            await login(email, password);
             localStorage.setItem("setIsAuth", true);
-            setIsAuth(true);
+            
             navigate('/');
         } catch (e) {
             if (!localStorage.getItem('uid')) {
