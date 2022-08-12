@@ -27,6 +27,7 @@ const Home = () => {
                         <img src={post.imgUrl} alt="" className="picture-added-post" />
                         <h3>{post.postName}</h3>
                         <h4>Post author: {post.authorName}</h4>
+                        <h4>Likes: {post.likes}</h4>
                     </Link>
                 )}) :
                     <div className="guest">

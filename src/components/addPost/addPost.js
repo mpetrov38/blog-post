@@ -11,6 +11,7 @@ const AddPost = () => {
     const [postText,setPostText] = useState('');
     const [image,setImage] = useState('');
     const [error,setError] = useState('');
+    const [likes,setLikes] = useState(0);
     let navigate = useNavigate();
     const postsCollectionRef = collection(db, 'posts');
     
@@ -29,6 +30,7 @@ const AddPost = () => {
                 imgUrl: image,
                 authorId: auth.currentUser.uid,
                 authorName: auth.currentUser.email,
+                likes: 0,
                 });
                 navigate('/');
         } catch (error) {
@@ -48,7 +50,7 @@ const AddPost = () => {
                 }}  
                 />
                 <label htmlFor="description">description:</label>
-                <input type="text" id="description" name="description" placeholder="description"
+                <textarea type="text" id="input" name="description" placeholder="description"
                     onChange={(event) => {
                     setPostText(event.target.value);
                 }}  

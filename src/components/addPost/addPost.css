@@ -17,10 +17,18 @@ form {
     text-align: center;
 }
 
-input {
+#input {
     display: block;
     margin: 10px auto;
     width: 200px;
+    border: 2px solid lightsteelblue;
+    padding: 5px;
+}
+#text
+{
+    display: block;
+    height:200px;
+    font-size:14pt;
     border: 2px solid lightsteelblue;
     padding: 5px;
 }

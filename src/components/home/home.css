@@ -13,7 +13,7 @@
     background: url("../../../src/images/back-ground-image.jpg") no-repeat; 
     background-size: cover;
     margin: auto;
-    min-height: 500px;
+    min-height: 910px;
 }
 
 .added-posts {
@@ -36,6 +36,7 @@
     margin-top: 10px;
     height: 250px;
     flex-basis: 25%;
+    min-height: 280px;
 }
 
 .guest {

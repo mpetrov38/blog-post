@@ -33,6 +33,7 @@
 
 .flex {
     display: flex;
+    align-items: center;
 }
 
 .flex p:first-child {
@@ -41,17 +42,16 @@
     margin: .5em;
 }
 
-.flex p:last-child {
-    width: 55%;
-    text-align: left;
-    margin: .5em;
-    font-weight: bold;
-}
-
 .profile button {
     color: white;
     border: none;
     border-radius: 0.3em;
     padding: 0.6em 1.2em;
     outline: none;
+}
+
+.profile button:hover {
+    color: red;
+    transform: scale(1.1);
+    cursor: pointer;
 }

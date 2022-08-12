@@ -23,13 +23,13 @@ function App() {
     <div className="App">
     <AuthContextProvider>
     {isAuth ? <Header setIsAuth={setIsAuth}/> : <HeaderWhenNotLogged setIsAuth={setIsAuth}/>}
-    <WeatherFetch />
         <Routes>
           <Route path="/"  element={<Home/>} />
-          <Route path="/addPost"  element={<AddPost/>} />
+          <Route path="/weather" element={<WeatherFetch />} />
+          <Route path="/addPost"  element={<ProtectedRoute><AddPost /></ProtectedRoute>} />
           <Route path="/profile"  element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/details/:id"  element={<Details/>} />
-          <Route path="/edit/:id"  element={<Edit/>} />
+          <Route path="/details/:id"  element={<ProtectedRoute><Details /></ProtectedRoute>} />
+          <Route path="/edit/:id"  element={<ProtectedRoute><Edit /></ProtectedRoute>} />
           <Route path="/login"  element={<Login setIsAuth={setIsAuth}/>} />  
           <Route path="/register"  element={<Register/>} />                
         </Routes>

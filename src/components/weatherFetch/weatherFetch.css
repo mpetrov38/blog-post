@@ -1,0 +1,24 @@
+.weather-btn {
+    list-style-type: none;
+    display: inline-block;
+    border: 2px solid lightsteelblue;
+    padding: 10px;
+    margin: 10px;
+    width: 140px;
+    text-align: center;
+    color: black;
+    background: cornflowerblue;
+}
+
+.weather-wapper {
+    border: 2px solid lightsteelblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-btn:hover {
+    color: red;
+    transform: scale(1.1);
+    cursor: pointer;
+}

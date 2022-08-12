@@ -25,6 +25,7 @@ const Header = (props) => {
         <ul>
           <li><Link className="nav-btn" to="/">Home</Link></li>
           <li><Link className="nav-btn" to="/addPost">Add Post</Link></li>
+          <li><Link className="nav-btn" to="/weather">Weather</Link></li>
         </ul>
       </div>
       <div className="right-container">

@@ -1,26 +1,9 @@
 .post-ticket {
-    text-align: left;
-    font-size: 15px;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
+    border: 1px solid lightsteelblue;
+    min-height: 600px;
 }
 
-.post-left img {
-    width: 400px;
-    height: 70%;
-    padding: 0 0 0 15px;
-}
-
-.post-right {
-    padding-left: 20px;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.book {
+.like {
     list-style-type: none;
     display: inline-block;
     border: 2px solid lightsteelblue;
@@ -30,6 +13,13 @@
     text-align: center;
     color: blue;
     background: none;
+}
+
+.like:hover {
+    background: lightsteelblue;
+    color: black;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .edit {
@@ -44,16 +34,30 @@
     background: none;
 }
 
+.edit:hover {
+    color: red;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .remove {
     list-style-type: none;
     display: inline-block;
-    border: 2px solid lightsteelblue;
+    border: 1px solid red;
     padding: 10px;
     margin: 10px;
     width: 140px;
+    height: 52px;
     text-align: center;
     color: red;
     background: none;
+    font-weight: 600;
+}
+
+.remove:hover {
+    color: lightsteelblue;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 a {
