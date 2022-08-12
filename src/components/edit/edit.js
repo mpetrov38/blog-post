@@ -6,26 +6,26 @@ import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../db/db-config";
 
 const Edit = () => {
-  let [hotel, setHotel] = useState({});
+  let [post, setPost] = useState({});
   const { id } = useParams();
   const [error,setError] = useState('');
   const nav = useNavigate();
-  const test = async () => {
+  const getDocRef = async () => {
     try {
       const docRef = doc(db, "posts", id);
       const docSnap = await getDoc(docRef);
-      setHotel(docSnap.data());
+      setPost(docSnap.data());
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    test();
+    getDocRef();
   }, [id]);
 
 
 
-  const test2 = (e) => {
+  const getPost = (e) => {
     e.preventDefault();
     const postName = e.target.post.value;
     const description = e.target.post.value;
@@ -61,27 +61,27 @@ const Edit = () => {
   return (
     <section id="viewAddPost">
       <h2>Edit existing post</h2>
-      <form id="formAddPost" onSubmit={test2}>
+      <form id="formAddPost" onSubmit={getPost}>
         <label htmlFor="post">Post name:</label>
         <input
           type="text"
           id="post"
           name="post"
-          defaultValue={hotel.postName}
+          defaultValue={post.postName}
         />
         <label htmlFor="description">Description:</label>
         <input
           type="text"
           id="description"
           name="description"
-          defaultValue={hotel.description}
+          defaultValue={post.description}
         />
         <label htmlFor="imgUrl">Image:</label>
         <input
           type="text"
           id="imgUrl"
           name="imgUrl"
-          defaultValue={hotel.imgUrl}
+          defaultValue={post.imgUrl}
         />
         <EditError className="input-error">{error}</EditError>
         <input type="submit" className="edit" value="Add" />
