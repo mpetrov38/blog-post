@@ -19,7 +19,7 @@ const Login = ({setIsAuth}) => {
             localStorage.setItem('uid', login.uid);
             localStorage.setItem("setIsAuth", true);
             setIsAuth(true);
-            navigate('/profile');
+            navigate('/');
         } catch (e) {
             if (!localStorage.getItem('uid')) {
                 setError('Wrong username or password!!!');

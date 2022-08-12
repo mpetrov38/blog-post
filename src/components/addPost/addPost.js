@@ -17,14 +17,14 @@ const AddPost = () => {
     const createPost = async (e) => {
         e.preventDefault();
         try {
-            await addDoc(postsCollectionRef, {postName: title,
+            await addDoc(postsCollectionRef,
+                {
+                postName: title,
                 description: postText,
                 imgUrl: image,
-                author: 
-                {
-                name: auth.currentUser.email,
-                id: auth.currentUser.uid
-                }});
+                authorId: auth.currentUser.uid,
+                authorName: auth.currentUser.email,
+                });
                 if (title.length === 0 || postText.length === 0||image.length === 0) {
                     setError('All fields are required');
                     return;
@@ -35,7 +35,6 @@ const AddPost = () => {
         }
     }
     
-       console.log(auth.currentUser.email);
     
     return (
         <section id="viewAddPost">

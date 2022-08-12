@@ -6,23 +6,23 @@ import { deleteDoc, getDoc, doc } from "firebase/firestore";
 import { db,auth } from "../../db/db-config";
 
 const Details = () => {
-  let [hotel, setHotel] = useState({});
+  let [post,setPost] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
-  const test = async () => {
+  const getPost = async () => {
     try {
       const docRef = doc(db, "posts", id);
       const docSnap = await getDoc(docRef);
-      setHotel(docSnap.data());
+      setPost(docSnap.data());
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    test();
+    getPost();
   }, [id]);
 
-  const test3 = () => {
+  const deletePost = () => {
     const docRef = doc(db, "posts", id);
     deleteDoc(docRef)
       .then(() => {
@@ -37,24 +37,24 @@ const Details = () => {
       <h2>Details</h2>
       <div className="post-ticket">
         <div className="post-left">
-          <img src={hotel.imgUrl} alt="fa" />
+          <img src={post.imgUrl} alt="fa" />
         </div>
         <div className="post-right">
           <div>
-            <h3>{hotel.postName}</h3>
+            <h3>{post.postName}</h3>
           </div>
           <div>{}</div>
-          <p><span >Post creator: {auth.currentUser.displayName}</span></p> 
+          <p><span >Post creator: {"author"}</span></p> 
 
           <Link to={`/edit/${id}`} className="edit">
             Edit
           </Link>
-          <button className="button, remove" onClick={test3}>
+          <button className="button, remove" onClick={deletePost}>
             Delete
           </button>
 
           <p>
-            <span className="green">Description: {hotel.description}</span>
+            <span className="green">Description: {post.description}</span>
           </p>
           <Link to="/book" className="book" >Like</Link>
         </div>

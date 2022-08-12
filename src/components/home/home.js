@@ -14,7 +14,6 @@ const Home = () => {
     useEffect(() => {
         const getPosts = async () => {
           const data = await getDocs(postsCollectionRef);
-          console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
           setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
     
@@ -27,7 +26,7 @@ const Home = () => {
                     <Link to={`/details/${post.id}`} key={index} className="added-post">
                         <img src={post.imgUrl} alt="" className="picture-added-post" />
                         <h3>{post.postName}</h3>
-                        {/* <h4>Post author: {post.author.name}</h4> */}
+                        <h4>Post author: {post.authorName}</h4>
                     </Link>
                 )}) :
                     <div className="guest">
