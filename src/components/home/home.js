@@ -34,7 +34,7 @@ const Home = () => {
                     </Link>
                 )}) :
                     <div className="guest">
-                        { !postLists ? "Loading..." : "There are no Posts found..." }
+                        { !postLists ? "Loading..." : "There are still no Posts created..." }
                     </div>
                 }
             

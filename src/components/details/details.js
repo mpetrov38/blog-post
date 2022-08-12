@@ -3,13 +3,14 @@ import "./details.css";
 import { Link, useNavigate} from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { deleteDoc, getDoc, doc, setDoc } from "firebase/firestore";
-import { db } from "../../db/db-config";
+import { db ,auth } from "../../db/db-config";
 
 const Details = () => {
   const [post,setPost] = useState({});
   const [likes,setLikes]= useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
+  const currentUser = auth.currentUser.uid;
   
   const getPost = async () => {
     try {
@@ -60,14 +61,8 @@ const Details = () => {
           </div>
           <div>{}</div>
           <p><span >Post creator: {post.authorName}</span></p> 
-
-          <Link to={`/edit/${id}`} className="edit">
-            Edit
-          </Link>
-          <button className="button, remove" onClick={deletePost}>
-            Delete
-          </button>
-
+          {currentUser == post.authorId ? <Link to={`/edit/${id}`} className="edit">Edit</Link> : null} 
+          {currentUser == post.authorId ?<button className="button, remove" onClick={deletePost}>Delete</button> : null} 
           <p>
             <span className="green">Description: {post.description}</span>
           </p>
