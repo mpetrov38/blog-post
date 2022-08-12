@@ -59,7 +59,7 @@ const Details = () => {
             <h3>{post.postName}</h3>
           </div>
           <div>{}</div>
-          <p><span >Post creator: {"author"}</span></p> 
+          <p><span >Post creator: {post.authorName}</span></p> 
 
           <Link to={`/edit/${id}`} className="edit">
             Edit
